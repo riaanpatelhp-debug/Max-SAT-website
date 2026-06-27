@@ -1,0 +1,58 @@
+# ============================================================
+# Apache security configuration for Max Potential Learning
+# OWASP Secure Headers Project: https://owasp.org/www-project-secure-headers/
+# ============================================================
+
+# ---- Security response headers ----
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+  Header always set X-Frame-Options "DENY"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()"
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+  # Remove headers that leak server/stack details (information disclosure)
+  Header unset X-Powered-By
+  Header unset Server
+
+  # Caching: revalidate code (stable filenames), long-cache immutable media.
+  <FilesMatch "\.(?:css|js|html)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(?:jpg|jpeg|png|gif|webp|svg|ico|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# ---- Force HTTPS ----
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ---- Block access to sensitive files (secrets, configs, VCS) ----
+<FilesMatch "(^\.|\.(env|ini|log|sh|bak|config|json|md)$|package(-lock)?\.json)">
+  Require all denied
+</FilesMatch>
+# Re-allow the site manifest/asset JSON if you add any under /assets (example):
+# <FilesMatch "^assets/.*\.json$">
+#   Require all granted
+# </FilesMatch>
+
+# ---- Disable directory listing (information disclosure) ----
+Options -Indexes
+
+# ---- Lightweight request-rate throttling (DoS mitigation) ----
+# Requires mod_evasive. Tune to your traffic; pair with edge rate limiting (see SECURITY.md).
+<IfModule mod_evasive20.c>
+  DOSHashTableSize    3097
+  DOSPageCount        5
+  DOSPageInterval     1
+  DOSSiteCount        60
+  DOSSiteInterval     1
+  DOSBlockingPeriod   30
+</IfModule>

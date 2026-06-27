@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Security headers (defense-in-depth). Authoritative copies are sent as real HTTP headers via _headers / .htaccess. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; frame-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Max Potential Learning — Premium SAT Prep for Texas Students</title>
+  <meta name="description" content="Personalized SAT prep built around diagnostics, mentorship, accountability, and measurable progress. Helping Texas students reach their max potential." />
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <noscript>
+    <!-- Progressive enhancement: if JS is blocked, scroll-reveal must not hide content. -->
+    <style>.reveal{opacity:1 !important;transform:none !important}</style>
+  </noscript>
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="brand" href="index.html" aria-label="Max Potential Learning home">
+        <span class="brand__badge"><img src="assets/img/logo.png" alt="" /></span>
+        <span class="brand__text">
+          <span class="brand__name">Max Potential Learning</span>
+          <span class="brand__tag">SAT Prep · Texas</span>
+        </span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a class="nav__link is-active" href="index.html">Home</a>
+        <a class="nav__link" href="about.html">About</a>
+        <a class="nav__link" href="testimonials.html">Testimonials</a>
+      </nav>
+      <div class="nav__actions">
+        <a class="btn btn--primary nav__cta nav__cta--desktop" href="diagnostic.html">Free Diagnostic</a>
+        <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+          <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="nav__mobile">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="diagnostic.html">Diagnostic</a>
+      <a class="btn btn--primary btn--block" href="diagnostic.html">Book a Free Diagnostic</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== HERO (scroll-driven) ===================== -->
+    <section class="hero" id="top">
+      <div class="hero__viewport">
+        <canvas class="hero__canvas" aria-hidden="true"></canvas>
+        <div class="hero__scrim"></div>
+        <div class="container hero__inner">
+          <div class="hero__content">
+            <span class="eyebrow">Trusted SAT Prep in Texas</span>
+            <h1 class="h-display">SAT Prep That Helps Texas Students Reach Their <span class="accent">Max Potential</span></h1>
+            <p class="hero__sub">Personalized SAT prep built around diagnostics, mentorship, accountability, and measurable student progress.</p>
+            <div class="btn-row">
+              <a class="btn btn--primary btn--lg" href="diagnostic.html">Book a Free Diagnostic
+                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <a class="btn btn--ghost btn--lg" href="testimonials.html">View Student Results</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="credbar">
+          <div class="container">
+            <div class="credbar__grid">
+              <div class="cred">
+                <div class="cred__num"><span data-count="200" data-suffix="+">0</span></div>
+                <div class="cred__label">Average SAT Improvement</div>
+              </div>
+              <div class="cred">
+                <div class="cred__num"><span data-count="110" data-suffix="+">0</span></div>
+                <div class="cred__label">Texas University Students</div>
+              </div>
+              <div class="cred">
+                <div class="cred__num">24-Week</div>
+                <div class="cred__label">Structured Plan</div>
+              </div>
+              <div class="cred">
+                <div class="cred__num">1:1</div>
+                <div class="cred__label">Mentor Support</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scrollcue" aria-hidden="true">
+          <span class="scrollcue__mouse"></span>
+          <span>Scroll</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TESTIMONIAL MARQUEE ===================== -->
+    <section class="section section--gradient" id="results">
+      <div class="container section-head section-head--center reveal">
+        <span class="eyebrow eyebrow--center">Proven Outcomes</span>
+        <h2 class="h-section">Real Students. Real Progress.</h2>
+        <p class="lead">Score gains from students who followed a structured, mentor-led plan.</p>
+      </div>
+
+      <div class="marquee reveal" aria-label="Student results">
+        <div class="marquee__track">
+          <!-- Annissa -->
+          <article class="tcard">
+            <div class="tcard__top">
+              <div class="tcard__score"><span class="from">1250</span><span class="arrow">→</span><span class="to">1540</span></div>
+              <span class="tcard__gain">+290 pts</span>
+            </div>
+            <div class="tcard__stars" aria-label="5 out of 5">★★★★★</div>
+            <p class="tcard__quote">The structure helped me know exactly what to focus on each week.</p>
+            <div class="tcard__person">
+              <span class="tcard__avatar">AJ</span>
+              <div><div class="tcard__name">Annissa J.</div><div class="tcard__loc">Austin, TX</div></div>
+            </div>
+          </article>
+          <!-- Rohan -->
+          <article class="tcard">
+            <div class="tcard__top">
+              <div class="tcard__score"><span class="from">1390</span><span class="arrow">→</span><span class="to">1500</span></div>
+              <span class="tcard__gain">+110 pts</span>
+            </div>
+            <div class="tcard__stars" aria-label="5 out of 5">★★★★★</div>
+            <p class="tcard__quote">The targeted practice made my studying feel much more efficient.</p>
+            <div class="tcard__person">
+              <span class="tcard__avatar">RK</span>
+              <div><div class="tcard__name">Rohan K.</div><div class="tcard__loc">Houston, TX</div></div>
+            </div>
+          </article>
+          <!-- Mark -->
+          <article class="tcard">
+            <div class="tcard__top">
+              <div class="tcard__score"><span class="from">1320</span><span class="arrow">→</span><span class="to">1500</span></div>
+              <span class="tcard__gain">+180 pts</span>
+            </div>
+            <div class="tcard__stars" aria-label="5 out of 5">★★★★★</div>
+            <p class="tcard__quote">I finally understood what mistakes were holding me back.</p>
+            <div class="tcard__person">
+              <span class="tcard__avatar">MJ</span>
+              <div><div class="tcard__name">Mark J.</div><div class="tcard__loc">Dallas, TX</div></div>
+            </div>
+          </article>
+          <!-- Ritvik -->
+          <article class="tcard">
+            <div class="tcard__top">
+              <div class="tcard__score"><span class="from">1210</span><span class="arrow">→</span><span class="to">1450</span></div>
+              <span class="tcard__gain">+240 pts</span>
+            </div>
+            <div class="tcard__stars" aria-label="5 out of 5">★★★★★</div>
+            <p class="tcard__quote">The weekly accountability helped me stay consistent.</p>
+            <div class="tcard__person">
+              <span class="tcard__avatar">RC</span>
+              <div><div class="tcard__name">Ritvik C.</div><div class="tcard__loc">San Antonio, TX</div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="container btn-row btn-row--center reveal" style="margin-top:2.75rem">
+        <a class="btn btn--gold btn--lg" href="https://www.skool.com/1600-accelerator/about" target="_blank" rel="noopener noreferrer">Join Our Community
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================== PARENT TRUST ===================== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head section-head--center reveal">
+          <span class="eyebrow eyebrow--center">Built for Families</span>
+          <h2 class="h-section">Built for Parents Who Want More Than Generic Test Prep</h2>
+          <p class="lead">A serious, structured program — so your student always knows the next step, and you can see the progress.</p>
+        </div>
+
+        <div class="grid grid--3" data-stagger>
+          <article class="card reveal">
+            <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/><path d="M7.5 13.5h3M13.5 13.5h3M7.5 17h3"/></svg></span>
+            <h3>Clear Weekly Structure</h3>
+            <p>A defined plan every week, so students know exactly what to study and never feel lost.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2.4"/><circle cx="18" cy="5" r="2.4"/><path d="M8.4 19H14a3.5 3.5 0 0 0 0-7H10a3.5 3.5 0 0 1 0-7h5.6"/></svg></span>
+            <h3>Personalized Student Roadmap</h3>
+            <p>A study path shaped by diagnostics and built around each student's real strengths and gaps.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V19"/><circle cx="9" cy="7.5" r="3.2"/><path d="M22 19v-1.5a4 4 0 0 0-3-3.87M16 4.13a3.2 3.2 0 0 1 0 6.2"/></svg></span>
+            <h3>Mentor-Led Accountability</h3>
+            <p>Regular check-ins keep students consistent, motivated, and moving toward their goal.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16"/><path d="M7.5 15l3.5-4 3 2.5L20 7"/></svg></span>
+            <h3>Progress Visibility</h3>
+            <p>Track measurable improvement over time, so families can see growth — not just guess at it.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2.5"/><path d="M9 4V3.2A1.2 1.2 0 0 1 10.2 2h3.6A1.2 1.2 0 0 1 15 3.2V4"/><path d="M9 13l2 2 4-4"/></svg></span>
+            <h3>Real Test Simulation</h3>
+            <p>Timed, realistic practice that builds stamina and removes test-day surprises.</p>
+          </article>
+          <article class="card reveal">
+            <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l7 3v5.5c0 4.6-3.1 7.9-7 9-3.9-1.1-7-4.4-7-9V5.5z"/><path d="M9 12l2 2 4-4"/></svg></span>
+            <h3>Confidence-Building Support</h3>
+            <p>Encouragement and strategy that help students walk into test day calm and prepared.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA BAND ===================== -->
+    <section class="section ctaband">
+      <div class="container">
+        <span class="eyebrow eyebrow--center eyebrow--gold" style="color:var(--gold-200)">Your Next Step</span>
+        <h2 class="h-section">See Exactly Where Your Student Stands</h2>
+        <p>Start with a free diagnostic and get a clear picture of strengths, gaps, and the next best steps.</p>
+        <div class="btn-row btn-row--center">
+          <a class="btn btn--gold btn--lg" href="diagnostic.html">Book a Free Diagnostic</a>
+          <a class="btn btn--ghost-dark btn--lg" href="testimonials.html">View Student Results</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT / SOCIAL BAR ===================== -->
+    <section class="section section--tight contactbar" id="contact">
+      <div class="container contactbar__inner">
+        <div class="contactbar__lead">
+          <span class="eyebrow">Get in Touch</span>
+          <h2>Questions? We're here to help your family get started.</h2>
+        </div>
+        <div class="contactbar__links">
+          <a class="social" href="mailto:max@maxpotentiallearning.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>
+            Email Us
+          </a>
+          <a class="social" href="tel:+18057120027">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 5-2 1.3a12 12 0 0 0 5.7 5.7l1.3-2 5 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3z"/></svg>
+            (805) 712-0027
+          </a>
+          <a class="social social--icon" href="https://www.linkedin.com/company/maxpotentiallearning-llc/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.25 8.25h4.5V23h-4.5zM8.5 8.25h4.31v2.02h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V23h-4.5v-6.3c0-1.5-.03-3.44-2.1-3.44-2.1 0-2.42 1.64-2.42 3.33V23h-4.5z"/></svg>
+          </a>
+          <a class="social social--icon" href="https://www.instagram.com/maxjoukovskisat/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a class="social social--icon" href="https://www.tiktok.com/@maxjoukovski" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.1 1.6 3.7 3.5 4v3c-1.4 0-2.7-.4-3.8-1.1v6.4a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v3.1a2.6 2.6 0 1 0 1.8 2.4V3z"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__col footer__col--brand">
+          <a class="brand" href="index.html">
+            <span class="brand__badge"><img src="assets/img/logo.png" alt="" /></span>
+            <span class="brand__text"><span class="brand__name">Max Potential Learning</span><span class="brand__tag">SAT Prep · Texas</span></span>
+          </a>
+          <p class="footer__about">Personalized SAT prep built around diagnostics, mentorship, accountability, and measurable student progress.</p>
+          <div class="footer__contact">
+            <a href="mailto:max@maxpotentiallearning.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>max@maxpotentiallearning.com</a>
+            <a href="tel:+18057120027"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 5-2 1.3a12 12 0 0 0 5.7 5.7l1.3-2 5 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3z"/></svg>(805) 712-0027</a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>Explore</h4>
+          <a href="index.html">Home</a>
+          <a href="testimonials.html">Results</a>
+          <a href="about.html">About</a>
+          <a href="diagnostic.html">Free Diagnostic</a>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <a href="about.html">About Us</a>
+          <a href="testimonials.html">Testimonials</a>
+          <a href="#contact">Contact</a>
+          <a href="https://www.skool.com/1600-accelerator/about" target="_blank" rel="noopener noreferrer">Community</a>
+        </div>
+        <div class="footer__col footer__col--last">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Max Potential Learning, LLC. All rights reserved.</span>
+        <div class="footer__social">
+          <a href="https://www.linkedin.com/company/maxpotentiallearning-llc/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.25 8.25h4.5V23h-4.5zM8.5 8.25h4.31v2.02h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V23h-4.5v-6.3c0-1.5-.03-3.44-2.1-3.44-2.1 0-2.42 1.64-2.42 3.33V23h-4.5z"/></svg></a>
+          <a href="https://www.instagram.com/maxjoukovskisat/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.tiktok.com/@maxjoukovski" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.1 1.6 3.7 3.5 4v3c-1.4 0-2.7-.4-3.8-1.1v6.4a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v3.1a2.6 2.6 0 1 0 1.8 2.4V3z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

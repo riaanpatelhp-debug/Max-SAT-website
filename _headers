@@ -1,0 +1,31 @@
+# ============================================================
+# HTTP security headers (Netlify / Cloudflare Pages format)
+# OWASP Secure Headers Project: https://owasp.org/www-project-secure-headers/
+# These are the AUTHORITATIVE headers. The <meta> CSP in each HTML
+# page is only a defense-in-depth fallback for hosts that ignore this file.
+# ============================================================
+/*
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  X-Permitted-Cross-Domain-Policies: none
+
+# Code is NOT fingerprinted (stable filenames), so it must revalidate on each
+# load — otherwise returning visitors get stale CSS/JS after a deploy.
+/*.html
+  Cache-Control: no-cache
+/assets/css/*
+  Cache-Control: no-cache
+/assets/js/*
+  Cache-Control: no-cache
+
+# Media rarely changes — safe to cache aggressively.
+/assets/img/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/hero/*
+  Cache-Control: public, max-age=31536000, immutable

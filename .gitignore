@@ -1,0 +1,32 @@
+# ============================================================
+# Never commit secrets or local environment files
+# (OWASP A05: Security Misconfiguration / secret leakage)
+# ============================================================
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials*.json
+
+# Dependencies / build
+node_modules/
+dist/
+build/
+.cache/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+
+# Local dev artifacts
+.claude/launch.json
+hero_frames/
