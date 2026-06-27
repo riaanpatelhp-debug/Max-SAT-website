@@ -493,8 +493,11 @@ h3 { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.01em; }
   display: flex;
   align-items: center;
   padding-top: var(--nav-h);
+  /* Reserve the bottom zone the credibility bar occupies so the centered
+     hero content (incl. the CTA buttons) never sits beneath the translucent bar. */
+  padding-bottom: clamp(9.5rem, 26vh, 14rem);
 }
-.hero__content { max-width: 620px; }
+.hero__content { position: relative; z-index: 2; max-width: 620px; }
 .hero__content .eyebrow { margin-bottom: 1.1rem; }
 .hero h1 { margin-bottom: 1.25rem; }
 .hero__sub {
@@ -1313,6 +1316,29 @@ h3 { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.01em; }
 
 @media (max-width: 720px) {
   .hero { height: 240vh; }
+  /* On short phones the content can't fit above the bottom credbar when centered.
+     Top-anchor it and compact the type so the CTA buttons never hit the bar. */
+  .hero__inner {
+    align-items: flex-start;
+    padding-top: calc(var(--nav-h) + .9rem);
+    padding-bottom: 0;
+  }
+  .hero__content { max-width: 100%; }
+  .hero__content .eyebrow { margin-bottom: .6rem; }
+  .hero h1 { font-size: clamp(1.8rem, 7.6vw, 2.3rem); margin-bottom: .7rem; }
+  .hero__sub {
+    font-size: 1rem;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+  .hero .btn-row { gap: .6rem; width: 100%; }
+  .hero .btn--lg { padding: .85rem 1.35rem; font-size: .98rem; }
+  /* Slimmer credbar so it reclaims vertical room for the content above it. */
+  .credbar { bottom: clamp(.9rem, 3vh, 1.4rem); }
+  .credbar__grid { padding: .7rem .8rem; }
+  .cred { padding: .55rem .4rem; }
+  .cred__num { font-size: 1.45rem; }
+  .cred__label { margin-top: .3rem; font-size: .68rem; }
   .hero__scrim {
     background:
       linear-gradient(180deg, rgba(245, 248, 252, .92) 0%, rgba(245, 248, 252, .7) 30%, rgba(245, 248, 252, .15) 55%, rgba(245, 248, 252, .55) 100%);

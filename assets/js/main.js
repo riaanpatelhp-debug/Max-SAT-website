@@ -213,22 +213,37 @@
   if (canvas && heroSection) {
     const ctx = canvas.getContext("2d", { alpha: false });
     const FRAME_COUNT = 70;
+    const SOURCE_W = 1920; // native width of the source frames
     const PATH = (i) => `assets/hero/frame_${String(i).padStart(3, "0")}.jpg`;
 
     const images = new Array(FRAME_COUNT);
-    let loadedCount = 0;
-    let currentFrame = -1;
-    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let ready = false; // at least one frame has been drawn
 
-    const sizeCanvas = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const w = canvas.clientWidth;
-      const h = canvas.clientHeight;
-      canvas.width = Math.round(w * dpr);
-      canvas.height = Math.round(h * dpr);
+    // Smooth-scrub state: `targetF` follows the scroll exactly; `currentF`
+    // eases toward it each frame so the animation glides instead of snapping.
+    let targetF = 0;
+    let currentF = 0;
+    let rafId = null;
+
+    const applyContextQuality = () => {
+      // Best-quality resampling — keeps the vector-style graphic crisp on scale.
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
     };
 
-    const drawFrame = (img) => {
+    const sizeCanvas = () => {
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      // Render at device-pixel sharpness, but never inflate the backing store
+      // past the source resolution — upscaling a 1920px master only adds blur.
+      let scale = Math.min(window.devicePixelRatio || 1, 2);
+      if (w > 0 && w * scale > SOURCE_W) scale = Math.max(1, SOURCE_W / w);
+      canvas.width = Math.max(1, Math.round(w * scale));
+      canvas.height = Math.max(1, Math.round(h * scale));
+      applyContextQuality(); // resizing the canvas resets all context state
+    };
+
+    const drawFrame = (img, alpha) => {
       if (!img || !img.complete || !img.naturalWidth) return;
       const cw = canvas.width;
       const ch = canvas.height;
@@ -247,7 +262,9 @@
         dy = 0;
         dx = (cw - dw) / 2;
       }
+      ctx.globalAlpha = alpha;
       ctx.drawImage(img, dx, dy, dw, dh);
+      ctx.globalAlpha = 1;
     };
 
     const nearestLoaded = (idx) => {
@@ -260,9 +277,20 @@
       return null;
     };
 
-    const render = (idx) => {
-      const img = nearestLoaded(idx);
-      if (img) drawFrame(img);
+    // Render a fractional frame by cross-fading the two adjacent frames,
+    // so motion between the 70 stills looks continuous rather than stepped.
+    const renderAt = (f) => {
+      const lo = Math.max(0, Math.min(FRAME_COUNT - 1, Math.floor(f)));
+      const hi = Math.min(FRAME_COUNT - 1, lo + 1);
+      const frac = f - lo;
+      const imgLo = nearestLoaded(lo);
+      if (!imgLo) return;
+      drawFrame(imgLo, 1);
+      if (hi !== lo && frac > 0.001) {
+        const imgHi = nearestLoaded(hi);
+        if (imgHi && imgHi !== imgLo) drawFrame(imgHi, frac);
+      }
+      ready = true;
     };
 
     const progress = () => {
@@ -273,23 +301,29 @@
       return Math.min(Math.max(scrolled / runway, 0), 1);
     };
 
-    let ticking = false;
-    const update = () => {
-      ticking = false;
+    const maxFrame = () => FRAME_COUNT - 1;
+
+    // Eased follow loop — `currentF` chases `targetF` for a flowing feel.
+    const tick = () => {
+      const diff = targetF - currentF;
+      if (Math.abs(diff) < 0.004) {
+        currentF = targetF;
+        renderAt(currentF);
+        rafId = null;
+        return;
+      }
+      currentF += diff * 0.16; // lower = more glide/trailing, higher = snappier
+      renderAt(currentF);
+      rafId = requestAnimationFrame(tick);
+    };
+    const kick = () => { if (rafId === null) rafId = requestAnimationFrame(tick); };
+
+    const onScroll = () => {
       const p = progress();
       heroSection.classList.toggle("is-scrolled", p > 0.02);
-      if (prefersReduced) return; // static final frame handled below
-      const frame = Math.min(FRAME_COUNT - 1, Math.round(p * (FRAME_COUNT - 1)));
-      if (frame !== currentFrame) {
-        currentFrame = frame;
-        render(frame);
-      }
-    };
-    const requestUpdate = () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
+      if (prefersReduced) return;
+      targetF = p * maxFrame();
+      kick();
     };
 
     // Preload frames
@@ -298,14 +332,13 @@
       img.decoding = "async";
       img.src = PATH(i);
       img.onload = () => {
-        loadedCount++;
-        // Draw first available frame ASAP, and refresh current frame as data arrives
-        if (currentFrame === -1) {
+        // Draw the first available frame ASAP; refresh as nearby data arrives.
+        if (!ready) {
           sizeCanvas();
-          currentFrame = prefersReduced ? FRAME_COUNT - 1 : Math.round(progress() * (FRAME_COUNT - 1));
-          render(currentFrame);
-        } else if (i === currentFrame) {
-          render(currentFrame);
+          currentF = targetF = prefersReduced ? maxFrame() : progress() * maxFrame();
+          renderAt(currentF);
+        } else if (Math.abs(i - currentF) <= 1) {
+          renderAt(currentF);
         }
       };
       images[i] = img;
@@ -315,11 +348,11 @@
 
     if (prefersReduced) {
       // Show the aspirational final frame, no scrubbing
-      const showFinal = () => render(FRAME_COUNT - 1);
+      const showFinal = () => renderAt(maxFrame());
       if (images[FRAME_COUNT - 1].complete) showFinal();
       else images[FRAME_COUNT - 1].onload = showFinal;
     } else {
-      window.addEventListener("scroll", requestUpdate, { passive: true });
+      window.addEventListener("scroll", onScroll, { passive: true });
     }
 
     let resizeTimer;
@@ -327,11 +360,10 @@
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
         sizeCanvas();
-        currentFrame = -1;
-        update();
+        renderAt(currentF);
       }, 120);
     });
 
-    requestUpdate();
+    onScroll();
   }
 })();
