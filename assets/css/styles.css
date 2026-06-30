@@ -496,7 +496,11 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
 .hero {
   position: relative;
   height: 280vh;
-  background: #74B3E8;
+  background: #1589eb;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 .hero__viewport {
   position: sticky;
@@ -510,7 +514,11 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   width: 100%;
   height: 100%;
   display: block;
-  background: #74B3E8;
+  background: #1589eb;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 .hero__scrim {
   position: absolute;
