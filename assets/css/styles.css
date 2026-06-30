@@ -301,18 +301,19 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   }
 }
 
-/* Ghost button inside the (now light-blue) subhero — dark text on white */
+/* Ghost button inside subhero (blue bg) — translucent white */
 .subhero .btn--ghost-dark {
-  background: #ffffff;
-  color: var(--text);
-  border-color: var(--border-strong);
-  box-shadow: var(--shadow-sm);
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  border-color: rgba(255,255,255,.32);
+  box-shadow: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 @media (hover: hover) and (pointer: fine) {
   .subhero .btn--ghost-dark:hover {
-    background: #ffffff;
-    border-color: var(--blue);
-    box-shadow: var(--shadow-md);
+    background: rgba(255,255,255,.2);
+    border-color: rgba(255,255,255,.55);
     transform: translateY(-2px);
   }
 }
@@ -670,36 +671,58 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
 .hero.is-scrolled .scrollcue { opacity: 0; }
 
 /* ============================================================
-   Inner-page hero (light blue)
+   Inner-page hero (#1589eb — matches canvas hero)
    ============================================================ */
 .subhero {
   position: relative;
-  color: var(--text);
+  color: #fff;
   padding-top: calc(var(--nav-h) + clamp(3.5rem, 8vw, 6rem));
   padding-bottom: clamp(3.5rem, 8vw, 6rem);
-  background: var(--inner-bg);
+  background: #1589eb;
   overflow: hidden;
 }
+/* Grid overlay — white lines on blue */
 .subhero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(17,24,39,.05) 1px, transparent 1px);
-  background-size: 28px 28px;
-  mask-image: radial-gradient(70% 60% at 70% 20%, #000, transparent 75%);
+  background-image:
+    linear-gradient(rgba(255,255,255,.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.22) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+/* Subtle dark vignette for depth — matches hero scrim style */
+.subhero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg,
+      rgba(4,16,36,.28) 0%,
+      rgba(4,16,36,.08) 50%,
+      rgba(4,16,36,0) 100%);
   pointer-events: none;
 }
 .subhero .container { position: relative; z-index: 1; }
-.subhero h1 { color: var(--text); }
+.subhero h1 { color: #fff; }
 .subhero .h-display { max-width: 16ch; }
+/* Accent on blue — gold gradient, same as canvas hero */
+.subhero .h-display .accent {
+  background: linear-gradient(108deg, var(--gold) 8%, var(--gold-300, #e4c069) 94%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
 .subhero__sub {
   font-size: clamp(1rem, 1.7vw, 1.2rem);
-  color: var(--muted);
+  color: rgba(255,255,255,.82);
   max-width: 60ch;
   margin: 1.25rem 0 2rem;
   line-height: 1.6;
 }
-.subhero .eyebrow { margin-bottom: 1.1rem; }
+.subhero .eyebrow { margin-bottom: 1.1rem; color: rgba(255,255,255,.88); }
 
 /* trust pills row under subhero heading */
 .pill-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2rem; }
@@ -709,14 +732,15 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   gap: .5rem;
   padding: .5rem .95rem;
   border-radius: 999px;
-  background: #ffffff;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-xs);
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   font-size: .88rem;
   font-weight: 500;
-  color: var(--text-2);
+  color: #fff;
 }
-.pill svg { width: 1rem; height: 1rem; color: var(--blue); }
+.pill svg { width: 1rem; height: 1rem; color: rgba(255,255,255,.9); }
 
 /* ============================================================
    Marquee (infinite testimonial scroll)
@@ -1557,6 +1581,7 @@ h1, h2, h3, .h-display, .h-section { text-wrap: balance; }
 .footer :focus-visible,
 .statframe :focus-visible,
 .hero__content :focus-visible,
+.subhero :focus-visible,
 .on-dark :focus-visible { outline-color: rgba(255,255,255,.9); outline-offset: 3px; }
 
 .marquee__track { will-change: transform; }
