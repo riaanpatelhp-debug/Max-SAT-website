@@ -381,16 +381,14 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   height: 42px;
   display: grid;
   place-items: center;
-  background: linear-gradient(180deg, #ffffff, #eef4fb);
-  border-radius: 12px;
-  box-shadow: 0 6px 16px -8px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.9);
+  background: transparent;
   flex-shrink: 0;
   transition: transform .25s var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
   .brand:hover .brand__badge { transform: rotate(-3deg) scale(1.04); }
 }
-.brand__badge img { width: 28px; height: 28px; object-fit: contain; }
+.brand__badge img { width: 40px; height: 40px; object-fit: contain; }
 .brand__text { display: flex; flex-direction: column; line-height: 1.05; }
 .brand__name {
   font-family: var(--font-sans);
@@ -1275,7 +1273,7 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   border-bottom: 1px solid rgba(255,255,255,.18);
 }
 .footer .brand__name, .footer .brand { color: #fff; }
-.footer .brand__badge { border: 1px solid rgba(255,255,255,.25); }
+.footer .brand__badge { border: none; }
 .footer__about { margin-top: 1.1rem; max-width: 34ch; font-size: .95rem; line-height: 1.6; }
 .footer__col h4 {
   position: relative;
