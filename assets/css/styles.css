@@ -249,21 +249,22 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   }
 }
 
-/* Gold — score/gain accent */
+/* Gold → Navy */
 .btn--gold {
-  background: linear-gradient(180deg, var(--gold-300) 0%, var(--gold) 100%);
-  color: #3a2c06;
+  background: #0b1d3f;
+  color: #fff;
   box-shadow:
-    0 1px 2px rgba(146,110,25,.35),
-    0 8px 22px -8px rgba(199,154,54,.55),
+    0 1px 2px rgba(8,20,39,.35),
+    0 8px 22px -8px rgba(8,20,39,.45),
     var(--hi);
 }
 @media (hover: hover) and (pointer: fine) {
   .btn--gold:hover {
     transform: translateY(-2px);
+    background: #081427;
     box-shadow:
-      0 2px 4px rgba(146,110,25,.35),
-      0 16px 34px -8px rgba(199,154,54,.6),
+      0 2px 4px rgba(8,20,39,.35),
+      0 16px 34px -8px rgba(8,20,39,.5),
       var(--hi);
   }
 }
@@ -495,7 +496,7 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
 .hero {
   position: relative;
   height: 280vh;
-  background: #f0f8ff;
+  background: #74B3E8;
 }
 .hero__viewport {
   position: sticky;
@@ -509,7 +510,7 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   width: 100%;
   height: 100%;
   display: block;
-  background: radial-gradient(60% 60% at 60% 45%, #ffffff 0%, #e6f2ff 55%, #cce4f6 100%);
+  background: #74B3E8;
 }
 .hero__scrim {
   position: absolute;
