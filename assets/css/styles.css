@@ -497,10 +497,6 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   position: relative;
   height: 280vh;
   background: #1589eb;
-  background-image:
-    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
-  background-size: 40px 40px;
 }
 .hero__viewport {
   position: sticky;
@@ -515,24 +511,32 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   height: 100%;
   display: block;
   background: #1589eb;
+}
+/* Grid overlay sits ABOVE the canvas (canvas JS draws over its own CSS bg).
+   This ::after renders on top of the drawn frames so the grid is actually visible. */
+.hero__scrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   background-image:
-    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.22) 1px, transparent 1px);
   background-size: 40px 40px;
 }
+/* Subtle dark vignette — lets #1589eb show, adds depth for white text readability */
 .hero__scrim {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
     linear-gradient(96deg,
-      rgba(240,248,255,.96) 0%,
-      rgba(240,248,255,.82) 34%,
-      rgba(240,248,255,.35) 55%,
-      rgba(240,248,255,0) 74%),
+      rgba(4,16,36,.38) 0%,
+      rgba(4,16,36,.14) 44%,
+      rgba(4,16,36,0) 68%),
     linear-gradient(180deg,
-      rgba(8,20,39,.04) 0%, transparent 22%,
-      transparent 70%, rgba(8,20,39,.06) 100%);
+      rgba(4,16,36,.06) 0%, transparent 18%,
+      transparent 72%, rgba(4,16,36,.1) 100%);
 }
 .hero__inner {
   position: relative;
@@ -544,13 +548,38 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
 }
 .hero__content { position: relative; z-index: 2; max-width: 620px; }
 .hero__content .eyebrow { margin-bottom: 1.1rem; }
-.hero h1 { margin-bottom: 1.25rem; }
+.hero h1 { margin-bottom: 1.25rem; color: #fff; }
+.hero .eyebrow { color: rgba(255,255,255,.88); }
 .hero__sub {
   font-size: clamp(1rem, 1.7vw, 1.2rem);
-  color: var(--muted);
+  color: rgba(255,255,255,.82);
   max-width: 520px;
   margin-bottom: 1.9rem;
   line-height: 1.6;
+}
+/* Accent gradient readable on blue — white→slightly warmer white */
+.hero .h-display .accent {
+  background: linear-gradient(108deg, var(--gold) 8%, var(--gold-300, #e4c069) 94%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+/* Ghost button on blue hero — translucent white */
+.hero .btn--ghost {
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  border-color: rgba(255,255,255,.32);
+  box-shadow: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero .btn--ghost:hover {
+    background: rgba(255,255,255,.2);
+    border-color: rgba(255,255,255,.55);
+    transform: translateY(-2px);
+  }
 }
 
 /* Credibility bar */
@@ -608,7 +637,7 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   flex-direction: column;
   align-items: center;
   gap: .4rem;
-  color: var(--muted);
+  color: rgba(255,255,255,.72);
   font-size: .72rem;
   letter-spacing: .18em;
   text-transform: uppercase;
@@ -617,10 +646,10 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
 }
 .scrollcue__mouse {
   width: 24px; height: 38px;
-  border: 2px solid rgba(17,24,39,.35);
+  border: 2px solid rgba(255,255,255,.45);
   border-radius: 14px;
   position: relative;
-  opacity: .65;
+  opacity: .75;
 }
 .scrollcue__mouse::after {
   content: "";
@@ -629,7 +658,7 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   top: 7px;
   width: 4px; height: 7px;
   border-radius: 3px;
-  background: rgba(17,24,39,.4);
+  background: rgba(255,255,255,.6);
   transform: translateX(-50%);
   animation: wheel 1.6s var(--ease-in-out) infinite;
 }
@@ -1411,8 +1440,8 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   .hero__scrim {
     background:
       linear-gradient(180deg,
-        rgba(240,248,255,.92) 0%, rgba(240,248,255,.7) 30%,
-        rgba(240,248,255,.15) 55%, rgba(240,248,255,.55) 100%);
+        rgba(4,16,36,.4) 0%, rgba(4,16,36,.18) 35%,
+        rgba(4,16,36,0) 60%, rgba(4,16,36,.14) 100%);
   }
   .credbar__grid { grid-template-columns: repeat(2, 1fr); gap: 0; }
   .cred { padding: .85rem .5rem; }
@@ -1527,6 +1556,7 @@ h1, h2, h3, .h-display, .h-section { text-wrap: balance; }
 .contactbar :focus-visible,
 .footer :focus-visible,
 .statframe :focus-visible,
+.hero__content :focus-visible,
 .on-dark :focus-visible { outline-color: rgba(255,255,255,.9); outline-offset: 3px; }
 
 .marquee__track { will-change: transform; }
