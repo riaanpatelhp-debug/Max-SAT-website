@@ -1215,10 +1215,11 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
    Footer
    ============================================================ */
 .footer {
-  background: var(--navy-900);
+  background: linear-gradient(180deg, var(--navy-900), var(--navy-800));
   color: rgba(255,255,255,.72);
   padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
   border-top: 1px solid rgba(255,255,255,.08);
+  box-shadow: var(--hi-dark);
 }
 .footer__top {
   display: grid;
@@ -1230,6 +1231,7 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
 .footer .brand__name, .footer .brand { color: #fff; }
 .footer__about { margin-top: 1.1rem; max-width: 34ch; font-size: .95rem; line-height: 1.6; }
 .footer__col h4 {
+  position: relative;
   color: #fff;
   font-family: var(--font-sans);
   font-size: .8rem;
@@ -1237,6 +1239,15 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   text-transform: uppercase;
   font-weight: 700;
   margin-bottom: 1.1rem;
+  padding-bottom: .65rem;
+}
+.footer__col h4::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 26px; height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--gold));
 }
 .footer__col a {
   display: block;
@@ -1256,7 +1267,7 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   color: rgba(255,255,255,.78);
   font-size: .95rem;
 }
-.footer__contact svg { width: 1.05rem; height: 1.05rem; color: #93c5fd; }
+.footer__contact svg { width: 1.05rem; height: 1.05rem; color: var(--blue); }
 @media (hover: hover) and (pointer: fine) {
   .footer__contact a:hover { color: #fff; }
 }
@@ -1278,11 +1289,17 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.12);
   color: rgba(255,255,255,.8);
-  transition: transform .2s var(--ease-out), background-color .2s ease, color .2s;
+  box-shadow: var(--hi-dark);
+  transition: transform .2s var(--ease-out), background-color .2s ease, color .2s, box-shadow .2s ease;
 }
 .footer__social svg { width: 1.1rem; height: 1.1rem; }
 @media (hover: hover) and (pointer: fine) {
-  .footer__social a:hover { transform: translateY(-2px); background: var(--blue); color: #fff; }
+  .footer__social a:hover {
+    transform: translateY(-2px);
+    background: var(--blue);
+    color: #fff;
+    box-shadow: var(--shadow-blue), var(--hi-dark);
+  }
 }
 
 /* legal pages */
