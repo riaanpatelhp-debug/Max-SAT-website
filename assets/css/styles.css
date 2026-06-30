@@ -1156,15 +1156,13 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   overflow: hidden;
   color: #fff;
   text-align: center;
-  background:
-    radial-gradient(700px 360px at 50% -20%, rgba(34,160,231,.28), transparent 60%),
-    linear-gradient(160deg, var(--navy-700) 0%, var(--navy-900) 100%);
+  background: #74B3E8;
 }
 .ctaband::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
   background-size: 28px 28px;
   mask-image: radial-gradient(60% 80% at 50% 0%, #000, transparent 75%);
 }
@@ -1182,7 +1180,7 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
    Contact / social bar
    ============================================================ */
 .contactbar {
-  background: linear-gradient(160deg, var(--navy-800), var(--navy-900));
+  background: #74B3E8;
   color: #fff;
   position: relative;
 }
@@ -1194,7 +1192,7 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   gap: 1.5rem;
 }
 .contactbar__lead { max-width: 30ch; }
-.contactbar__lead .eyebrow { color: #93c5fd; }
+.contactbar__lead .eyebrow { color: rgba(255,255,255,.9); }
 .contactbar__lead h2 { color: #fff; font-size: clamp(1.5rem, 2.6vw, 2.1rem); margin-top: .7rem; }
 .contactbar__links {
   display: flex;
@@ -1228,24 +1226,24 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
    Footer
    ============================================================ */
 .footer {
-  background: var(--inner-bg);
-  color: var(--muted);
+  background: #74B3E8;
+  color: rgba(255,255,255,.82);
   padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgba(255,255,255,.15);
 }
 .footer__top {
   display: grid;
   grid-template-columns: 1.6fr 1fr 1fr 1fr;
   gap: 2rem;
   padding-bottom: 2.5rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255,255,255,.18);
 }
-.footer .brand__name, .footer .brand { color: var(--text); }
-.footer .brand__badge { border: 1px solid var(--border); }
+.footer .brand__name, .footer .brand { color: #fff; }
+.footer .brand__badge { border: 1px solid rgba(255,255,255,.25); }
 .footer__about { margin-top: 1.1rem; max-width: 34ch; font-size: .95rem; line-height: 1.6; }
 .footer__col h4 {
   position: relative;
-  color: var(--text);
+  color: #fff;
   font-family: var(--font-sans);
   font-size: .8rem;
   letter-spacing: .14em;
@@ -1260,29 +1258,29 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   left: 0; bottom: 0;
   width: 26px; height: 2px;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--blue), var(--gold));
+  background: linear-gradient(90deg, rgba(255,255,255,.9), var(--gold));
 }
 .footer__col a {
   display: block;
   padding: .4rem 0;
-  color: var(--muted);
+  color: rgba(255,255,255,.8);
   font-size: .96rem;
   transition: color .2s ease, padding-left .2s var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
-  .footer__col a:hover { color: var(--blue2); padding-left: 4px; }
+  .footer__col a:hover { color: #fff; padding-left: 4px; }
 }
 .footer__contact { margin-top: 1.4rem; display: grid; gap: .6rem; }
 .footer__contact a {
   display: inline-flex;
   align-items: center;
   gap: .55rem;
-  color: var(--text-2);
+  color: rgba(255,255,255,.9);
   font-size: .95rem;
 }
-.footer__contact svg { width: 1.05rem; height: 1.05rem; color: var(--blue); }
+.footer__contact svg { width: 1.05rem; height: 1.05rem; color: rgba(255,255,255,.9); }
 @media (hover: hover) and (pointer: fine) {
-  .footer__contact a:hover { color: var(--blue2); }
+  .footer__contact a:hover { color: #fff; }
 }
 .footer__bottom {
   display: flex;
@@ -1292,26 +1290,25 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   gap: 1rem;
   padding-top: 1.75rem;
   font-size: .88rem;
-  color: var(--muted);
+  color: rgba(255,255,255,.6);
 }
 .footer__social { display: flex; gap: .6rem; }
 .footer__social a {
   width: 38px; height: 38px;
   display: grid; place-items: center;
   border-radius: 10px;
-  background: #ffffff;
-  border: 1px solid var(--border);
-  color: var(--text-2);
-  box-shadow: var(--shadow-xs);
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.9);
+  box-shadow: var(--hi-dark);
   transition: transform .2s var(--ease-out), background-color .2s ease, color .2s, box-shadow .2s ease;
 }
 .footer__social svg { width: 1.1rem; height: 1.1rem; }
 @media (hover: hover) and (pointer: fine) {
   .footer__social a:hover {
     transform: translateY(-2px);
-    background: var(--blue);
+    background: rgba(255,255,255,.28);
     color: #fff;
-    box-shadow: var(--shadow-blue);
   }
 }
 
@@ -1519,8 +1516,9 @@ h1, h2, h3, .h-display, .h-section { text-wrap: balance; }
 .nav :focus-visible,
 .ctaband :focus-visible,
 .contactbar :focus-visible,
+.footer :focus-visible,
 .statframe :focus-visible,
-.on-dark :focus-visible { outline-color: #93c5fd; outline-offset: 3px; }
+.on-dark :focus-visible { outline-color: rgba(255,255,255,.9); outline-offset: 3px; }
 
 .marquee__track { will-change: transform; }
 
