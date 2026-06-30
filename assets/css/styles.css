@@ -152,13 +152,6 @@ ul { list-style: none; padding: 0; }
   text-transform: uppercase;
   color: var(--blue);
 }
-.eyebrow::before {
-  content: "";
-  width: 22px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--gold), var(--blue));
-  border-radius: 2px;
-}
 .eyebrow--center { justify-content: center; }
 .eyebrow--gold { color: var(--gold); }
 
@@ -492,56 +485,37 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
 .nav__mobile .btn { margin-top: 1rem; }
 
 /* ============================================================
-   Hero — scroll-driven canvas (home)
+   Hero — static navy (home)
    ============================================================ */
 .hero {
   position: relative;
-  height: 280vh;
-  background: #1589eb;
+  min-height: 100vh;
+  background: #0b1d3f;
 }
 .hero__viewport {
-  position: sticky;
-  top: 0;
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
   overflow: hidden;
 }
-.hero__canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  background: #1589eb;
-}
-/* Grid overlay sits ABOVE the canvas (canvas JS draws over its own CSS bg).
-   This ::after renders on top of the drawn frames so the grid is actually visible. */
+/* Grid overlay */
 .hero__scrim::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255,255,255,.22) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.22) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.14) 1px, transparent 1px);
   background-size: 40px 40px;
 }
-/* Subtle dark vignette — lets #1589eb show, adds depth for white text readability */
 .hero__scrim {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    linear-gradient(96deg,
-      rgba(4,16,36,.38) 0%,
-      rgba(4,16,36,.14) 44%,
-      rgba(4,16,36,0) 68%),
-    linear-gradient(180deg,
-      rgba(4,16,36,.06) 0%, transparent 18%,
-      transparent 72%, rgba(4,16,36,.1) 100%);
 }
 .hero__inner {
   position: relative;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   padding-top: var(--nav-h);
@@ -1461,12 +1435,7 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   .cred { padding: .55rem .4rem; }
   .cred__num { font-size: 1.45rem; }
   .cred__label { margin-top: .3rem; font-size: .68rem; }
-  .hero__scrim {
-    background:
-      linear-gradient(180deg,
-        rgba(4,16,36,.4) 0%, rgba(4,16,36,.18) 35%,
-        rgba(4,16,36,0) 60%, rgba(4,16,36,.14) 100%);
-  }
+  .hero__scrim { background: none; }
   .credbar__grid { grid-template-columns: repeat(2, 1fr); gap: 0; }
   .cred { padding: .85rem .5rem; }
   .cred + .cred::before { display: none; }
