@@ -530,9 +530,9 @@ h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; }
   margin-bottom: 1.9rem;
   line-height: 1.6;
 }
-/* Accent gradient readable on blue — white→slightly warmer white */
+/* Accent gradient readable on the navy hero — light blue */
 .hero .h-display .accent {
-  background: linear-gradient(108deg, var(--gold) 8%, var(--gold-300, #e4c069) 94%);
+  background: linear-gradient(108deg, #5cc2f5 8%, #a3daff 94%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
